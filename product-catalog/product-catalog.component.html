@@ -1,11 +1,17 @@
 <div>
 <p>product-catalog works!</p>
-
+<nav>
 <h2>Products</h2>
 <ul class="products">
   <li *ngFor="let product of products">
     <span class="badge">{{product.name}}</span> {{product.description}}
+    
+        <a [routerLink]="['/products', product.id ]" class="btn btn-primary active" role="button">
+        Go To Product
+        </a>
+       
   </li>
 </ul>
+</nav>
 <!--<input type="button" value="Display" onclick="getProducts()"> -->
 </div>
