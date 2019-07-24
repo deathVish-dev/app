@@ -26,10 +26,13 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private alertService: AlertService,
         private custser:CustomerService) { 
-    if (localStorage.getItem('currentuser')) { 
+		if (localStorage.getItem('currentuser')) { 
             this.router.navigate(['/products']);
-  }
+			}
         }
+		
+		
+		
   ngOnInit() {
     this.msg='';
     this.login=new Login(null,'','','');
@@ -44,10 +47,11 @@ export class LoginComponent implements OnInit {
     console.log(this.login.uname);
     console.log(this.login.pass);
     this.loginser.getDetails(this.f.username.value, this.f.password.value)
-    .subscribe(data=>{this.login=data,error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                }
+    .subscribe(data=>{
+      this.login=data,error => {
+              this.alertService.error(error);
+              this.loading = false;
+              }
       if(!this.login)
       {
         console.log("Null");
@@ -56,21 +60,27 @@ export class LoginComponent implements OnInit {
         this.login=new Login(null,'','','');
         this.router.navigate(['login']);
       }
-      else if(this.login.role=='Customer'){
+      else if(this.login.role=='Customer')
+      {
         console.log("Login Successful");
         this.custser.getDetails(this.f.username.value, this.f.password.value)
         .subscribe(obj=>{this.cust=obj,
           error =>{console.log('Error')};
           localStorage.setItem('currentuser',JSON.stringify(this.cust));
           console.log(this.cust);
-
         });
         this.router.navigate(['products']);
       }
-      else if(this.login.role=='Vendor'){
+      else if(this.login.role=='Vendor')
+      {
         console.log("Login Successful");
         this.router.navigate(['dash']);
-      }});
+      }
+      else{
+        this.router.navigate(['admindash']);
+      }
+    
+    });
       
 
   }

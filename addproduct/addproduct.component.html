@@ -1,0 +1,61 @@
+<p>addproduct works!</p>
+
+<div class="col-md-6">  
+        <h2 class="text-center">{{empformlabel}}</h2>  
+        <form [formGroup]="addForm" novalidate class="form">  
+          <div class="form-group">  
+            <label for="empId">Product Id:</label>  
+            <input type="number" formControlName="id" placeholder="Id" name="empId" class="form-control" id="empId" readonly>  
+          </div>  
+        
+          <div class="form-group">  
+            <label for="empName">Product Name:</label>  
+            <input formControlName="name" placeholder="Product Name" name="empName" class="form-control" id="empName">  
+            <div class="alert  alert-danger" *ngIf="addForm.get('name').hasError('required') && addForm.get('name').touched">  
+              Product Name is required  
+            </div>  
+          </div>  
+        
+          <div class="form-group">  
+            <label for="empSalary">Product Description:</label>  
+            <input formControlName="description" placeholder="Employee Salary" name="employee_salary" class="form-control" id="employee_salary">  
+            <div class="alert  alert-danger" *ngIf="addForm.get('description').hasError('minlength') && addForm.get('description').touched">  
+              Employee Salary is required and should less than 9 characters.  
+            </div>  
+          </div>  
+        
+          <div class="form-group">  
+            <label for="empAge">Category:</label>  
+            <input formControlName="category" placeholder="Employee Age" name="empAge" class="form-control" id="empAge">  
+            <div class="alert  alert-danger" *ngIf=" addForm.get('category').hasError('maxlength') && addForm.get('category').touched">  
+              Age is required and should less than 3 characters.  
+            </div>  
+        </div> 
+            <div class="form-group">  
+                    <label for="price">Price:</label>  
+                    <input formControlName="price" placeholder="Employee Age" name="price" class="form-control" id="price">  
+                    <div class="alert  alert-danger" *ngIf=" addForm.get('price').hasError('maxlength') && addForm.get('price').touched">  
+                      Age is required and should less than 3 characters.  
+             </div>
+            </div> 
+             <div class="form-group">  
+                    <label for="Rent">Rent:</label>  
+                     <input formControlName="rent" placeholder="Employee Age" name="Rent" class="form-control" id="Rent">  
+                  <div class="alert  alert-danger" *ngIf=" addForm.get('rent').hasError('maxlength') && addForm.get('rent').touched">  
+                  Age is required and should less than 3 characters.  
+              </div>
+            </div> 
+              <div class="form-group">  
+                    <label for="Image">Image Path:</label>  
+                    <input formControlName="img" placeholder="Employee Age" name="Image" class="form-control" id="Image">  
+                    <div class="alert  alert-danger" *ngIf=" addForm.get('img').hasError('maxlength') && addForm.get('img').touched">  
+                      Age is required and should less than 3 characters.  
+            </div>
+            
+          </div>  
+          <button class="btn btn-success" [disabled]='addForm.invalid' *ngIf="btnvisibility" (click)="onSubmit()">Save</button>  
+          <button class="btn btn-success" [disabled]='addForm.invalid' *ngIf="!btnvisibility" (click)="onUpdate()">Update</button>  
+        
+         <!--<p>Form value: {{ addForm.value | json }}</p>  --> 
+        </form>  
+      </div> 

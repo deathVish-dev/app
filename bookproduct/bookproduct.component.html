@@ -1,0 +1,42 @@
+<p>bookproduct works!</p>
+Items To Be Rented:
+<br>
+<div *ngFor="let c of cartitems">
+
+    <nav>
+    <a [routerLink]="['/products', c.product.id ]" routerLinkActive="active">{{c.product.name}}</a>
+    </nav>
+        {{c.product.description}}
+           <div class="example-button-row" style="text-align:right">
+                   Rent Per day:{{c.product.rent}}<br>
+                   No Of Item: {{c.quantity}}
+           <br>
+           Total Rent: {{(c.product.rent)*(c.quantity)}}<br>    
+           </div>
+</div>
+     <hr/><br>
+
+
+<div style="text-align:center">
+
+<label>
+   Select Days To Rent:
+</label>
+   <div class="example-wrapper"></div>
+
+    <label class="example-input-wrapper">
+        Date Time:
+        <input placeholder="Date Time Range:"
+               [style.width]="'350px'"
+               [(ngModel)]="dateTimeRange"
+               [selectMode]="'range'"
+               [owlDateTimeTrigger]="dtRange1" [owlDateTime]="dtRange1">
+        <owl-date-time #dtRange1></owl-date-time>
+    </label>
+</div>
+<div class="example-button-row" style="text-align:right">
+    Amount To Be Paid:  {{this.total}}
+    <input type="button" value="Confirm Address" (click)="OnConfirm()">
+</div>
+
+

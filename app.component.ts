@@ -7,6 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Rent A Trip Kit'; 
-  constructor(){}
+  title = 'Rent A Trip Kit';
+  status:Boolean;
+   
+  constructor(){
+  if (localStorage.getItem('currentuser')) { 
+      this.status=false;
+  }
+  else
+  {
+    this.status=false;
+  }
+}
+
+OnConfirm()
+{
+  localStorage.clear();
+  console.log("Session Destroyed");
+}
 }

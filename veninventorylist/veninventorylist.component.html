@@ -1,0 +1,35 @@
+<p>veninventorylist works!</p>
+<div class="col-md-12">  
+        <h2> Product Details</h2>  
+        <div class="table-responsive table-container">  
+          <table class="table">  
+            <thead>  
+              <tr>  
+                <th>Id</th>  
+                <th>Product Name</th>  
+                <th>Description</th>  
+                <th>Category</th>
+                <th>Maximum rent</th>
+                <th>Quantity</th>
+                <th>Rent</th>  
+              </tr>  
+            </thead>  
+            <tbody>  
+              <tr *ngFor="let inven of inventorylist">  
+                <td class="hidden">{{inven.id}}</td>  
+                <td>{{inven.product.name}}</td>  
+                <td>{{inven.product.description}}</td>  
+                <td>{{inven.product.category}}</td> 
+                <td>{{inven.product.rent}}</td>  
+                <td>{{inven.quantity}}</td>
+                <td>{{inven.rent}}</td>    
+                <td>  
+                  <button (click)="deleteProd(inven)" class="btn btn-info"> Delete</button>  
+                  <button (click)="editProd(inven)" style="margin-left: 20px;" class="btn btn-info"> Edit</button>  
+                </td>  
+              </tr>  
+            </tbody>  
+          </table>  
+          <a routerLink="/addprod" class="btn btn-primary active" role="button">Add Product</a>
+        </div>  
+      </div>

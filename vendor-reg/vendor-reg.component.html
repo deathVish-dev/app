@@ -1,1 +1,48 @@
-<p>vendor-reg works!</p>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>HTML Starter</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+ 
+  </head>
+<body>
+ <div ng-app = "myApp" class = "container" style="width:550px">
+   <div style="text-align:center;color:blue">
+ <h3><b>Vendor Registraion Form</b></h3>
+   </div>
+ <div ng-controller = "ContactController">
+   <div align="right">
+   </div>
+<form role = "form" class="well" (ngSubmit)="onSubmit()"> 
+ <div class = "form-group">
+ <label for = "name"> Name:  </label>
+ <input type = "text" id = "name" class = "form-control" placeholder = "Enter Name " [(ngModel)] = "cust.name" name="name">
+ </div>
+ <div class = "form-group">
+ <label for = "email"> Email:  </label>
+ <input type = "email" id = "email" class = "form-control" placeholder = "Enter Email " [(ngModel)] = "cust.mail" (change)="onChange()" name="email">
+<br>
+{{this.msg}} 
+</div>
+ <div class = "form-group">
+ <label for = "password"> Password:  </label>
+ <input type = "password" id = "password" class = "form-control" placeholder = "Enter Password " [(ngModel)] = "cust.pass" name="password">
+ </div>
+ <div class = "form-group">
+ <label for = "phone"> Phone:  </label>
+ <input type = "text" id = "phone" class = "form-control" placeholder = "Enter Phone " [(ngModel)] = "cust.phone" name="phone">
+ </div>
+ <div class = "form-group">
+    <label for = "loc"> Location:  </label>
+    <input type = "text" id = "loc" class = "form-control" placeholder = "Enter Location" [(ngModel)] = "cust.addr" name="loc">
+    </div>
+ <br>
+ <button type="submit" class="btn btn-success">Submit</button>
+   </form>
+ </div>
+ </div>
+</body>
+</html>

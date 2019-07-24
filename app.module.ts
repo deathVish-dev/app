@@ -12,6 +12,15 @@ import {MatButtonModule} from '@angular/material/button';
 import { CustRegComponent } from './cust-reg/cust-reg.component';
 import { VendorRegComponent } from './vendor-reg/vendor-reg.component';
 import { CartComponent } from './cart/cart.component';
+import { BookproductComponent } from './bookproduct/bookproduct.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AdmindashComponent } from './admindash/admindash.component';
+import { ProductcrudComponent } from './productcrud/productcrud.component';
+import { AddproductComponent } from './addproduct/addproduct.component';
+import { AdminorderComponent } from './adminorder/adminorder.component';
+import { VeninventorylistComponent } from './veninventorylist/veninventorylist.component';
+import { AddeditinventoryComponent } from './addeditinventory/addeditinventory.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +31,14 @@ import { CartComponent } from './cart/cart.component';
     DashComponent,
     CustRegComponent,
     VendorRegComponent,
-    CartComponent
+    CartComponent,
+    BookproductComponent,
+    AdmindashComponent,
+    ProductcrudComponent,
+    AddproductComponent,
+    AdminorderComponent,
+    VeninventorylistComponent,
+    AddeditinventoryComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +46,10 @@ import { CartComponent } from './cart/cart.component';
     HttpClientModule,
     FormsModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OwlDateTimeModule, 
+    BrowserAnimationsModule,
+    OwlNativeDateTimeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
