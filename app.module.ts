@@ -20,7 +20,9 @@ import { ProductcrudComponent } from './productcrud/productcrud.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { AdminorderComponent } from './adminorder/adminorder.component';
 import { VeninventorylistComponent } from './veninventorylist/veninventorylist.component';
-import { AddeditinventoryComponent } from './addeditinventory/addeditinventory.component';
+import { AddtoinventoryComponent } from './addtoinventory/addtoinventory.component';
+import { EditinventoryComponent } from './editinventory/editinventory.component';
+import { AddinventoryinfoComponent } from './addinventoryinfo/addinventoryinfo.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { AddeditinventoryComponent } from './addeditinventory/addeditinventory.c
     AddproductComponent,
     AdminorderComponent,
     VeninventorylistComponent,
-    AddeditinventoryComponent
+    AddtoinventoryComponent,
+    EditinventoryComponent,
+    AddinventoryinfoComponent
   ],
   imports: [
     BrowserModule,

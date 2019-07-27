@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/services/product';
 import { ProductService } from 'src/services/product.service';
+import { Inventory } from 'src/services/inventory';
+import { InventoryService } from 'src/services/inventory.service';
 
 @Component({
   selector: 'app-product-catalog',
@@ -9,16 +11,16 @@ import { ProductService } from 'src/services/product.service';
 })
 export class ProductCatalogComponent implements OnInit {
 
-  public  products:Product[];
+  public invens:Inventory[];
   
-  constructor(public productser:ProductService){ }
+  constructor(public productser:ProductService,private invenservice:InventoryService){ }
 
 
   public getProducts()
   {
-    this.productser.getAllProduct().subscribe(data =>{this.products=data,error => console.log(error);
-      console.log(this.products);
-    });  
+    this.invenservice.getAllInventoryList().subscribe(data=>{
+      this.invens=data;
+      });
   }
 
   ngOnInit() {

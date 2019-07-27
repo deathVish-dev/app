@@ -31,7 +31,7 @@ export class ProductcrudComponent implements OnInit {
     console.log("In Delete");
    /* this.productser.deleteProduct(prod.id).subscribe(data=>{
       console.log(data);
-    });*/
+    });*/ 
  
   }  
   public editProd(prod: Product): void {

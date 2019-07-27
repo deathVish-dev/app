@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from 'src/services/customer';
 import { CustomerService } from 'src/services/customer.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cust-reg',
@@ -13,7 +14,7 @@ export class CustRegComponent implements OnInit {
   cust:Customer;
   continue:Boolean;
   msg:String;
-  constructor(private custser:CustomerService) {
+  constructor(private custser:CustomerService,private route:Router) {
     this.cust=new Customer(null,'','','',null,'');
     this.continue=false;
     this.msg='';
@@ -31,6 +32,7 @@ export class CustRegComponent implements OnInit {
   console.log(this.cust);
   this.custser.regUser(this.cust).subscribe(data=>{console.log(data),error=>console.error(error);
   });
+  this.route.navigate(['login']);
   }
   }
 

@@ -12,8 +12,10 @@ import { BookproductComponent } from './bookproduct/bookproduct.component';
 import { ProductcrudComponent } from './productcrud/productcrud.component';
 import { AdmindashComponent } from './admindash/admindash.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
-import { AddeditinventoryComponent } from './addeditinventory/addeditinventory.component';
 import { VeninventorylistComponent } from './veninventorylist/veninventorylist.component';
+import { AddtoinventoryComponent } from './addtoinventory/addtoinventory.component';
+import { EditinventoryComponent } from './editinventory/editinventory.component';
+import { AddinventoryinfoComponent } from './addinventoryinfo/addinventoryinfo.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/products', pathMatch: 'full' },
@@ -29,10 +31,11 @@ const routes: Routes = [
   { path: 'productcrud', component: ProductcrudComponent  },
   { path: 'addprod', component:AddproductComponent },
   { path: 'addprod/:id', component:AddproductComponent },
-  { path: 'addinven', component:AddeditinventoryComponent },
-  { path: 'addinven/:id', component:AddeditinventoryComponent },
+  { path: 'addtoinven', component:AddtoinventoryComponent },
+  { path: 'addnewinveninfo/:pid', component:AddinventoryinfoComponent },
+  { path: 'editinven/:iid', component:EditinventoryComponent },
   { path: 'inventorylist', component:VeninventorylistComponent },
-  
+   
 
 ];
 

@@ -1,1 +1,35 @@
 <p>adminorder works!</p>
+<div class="col-md-12">  
+        <h2> Product Details</h2>  
+        <div class="table-responsive table-container">  
+          <table class="table">  
+            <thead>  
+              <tr>  
+                <th>Id</th>  
+                <th>Product Name</th>  
+                <th>Description</th>  
+                <th>Category</th>
+                <th>Price</th>
+                <th>Rent</th>
+                <th>Image</th>  
+              </tr>  
+            </thead>  
+            <tbody>  
+              <tr *ngFor="let product of products">  
+                <td class="hidden">{{product.id}}</td>  
+                <td>{{product.name}}</td>  
+                <td>{{product.description}}</td>  
+                <td>{{product.category}}</td> 
+                <td>{{product.price}}</td>  
+                <td>{{product.rent}}</td>
+                <td>{{product.img}}</td>    
+                <td>  
+                  <button (click)="deleteProd(product)" class="btn btn-info"> Delete</button>  
+                  <button (click)="editProd(product)" style="margin-left: 20px;" class="btn btn-info"> Edit</button>  
+                </td>  
+              </tr>  
+            </tbody>  
+          </table>  
+          <a routerLink="/addprod" class="btn btn-primary active" role="button">Add Product</a>
+        </div>  
+      </div>

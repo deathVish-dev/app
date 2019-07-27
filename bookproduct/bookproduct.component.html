@@ -1,23 +1,35 @@
 <p>bookproduct works!</p>
 Items To Be Rented:
 <br>
-<div *ngFor="let c of cartitems">
+<nav>
+    <h2>Products</h2>
+    <ul class="cartitems">
+      <li *ngFor="let c of cartitems">
 
-    <nav>
-    <a [routerLink]="['/products', c.product.id ]" routerLinkActive="active">{{c.product.name}}</a>
+     <nav>
+     <a [routerLink]="['/products', c.inven.id ]" routerLinkActive="active"><h2>{{c.inven.prod.name}}</h2></a>
+     </nav>
+         <h4>{{c.inven.prod.description}}</h4>
+            
+<div class="example-button-row" style="text-align:right">
+                    Rent Per day:{{c.inven.rent}}<br>
+                    No Of Item: {{c.quantity}}
+            <br>
+            <hr/>
+            <br>
+            Total Rent: {{(c.inven.rent)*(c.quantity)}}<br>    
+            </div>
+      </li>
+    </ul>
+      <hr/>
+      <div class="example-button-row" style="text-align:right">
+        Amount To Be Paid For One Day:  {{total}}
+        </div>
     </nav>
-        {{c.product.description}}
-           <div class="example-button-row" style="text-align:right">
-                   Rent Per day:{{c.product.rent}}<br>
-                   No Of Item: {{c.quantity}}
-           <br>
-           Total Rent: {{(c.product.rent)*(c.quantity)}}<br>    
-           </div>
-</div>
      <hr/><br>
 
 
-<div style="text-align:center">
+<div style="text-align:left">
 
 <label>
    Select Days To Rent:
@@ -30,13 +42,102 @@ Items To Be Rented:
                [style.width]="'350px'"
                [(ngModel)]="dateTimeRange"
                [selectMode]="'range'"
-               [owlDateTimeTrigger]="dtRange1" [owlDateTime]="dtRange1">
+               [owlDateTimeTrigger]="dtRange1" [owlDateTime]="dtRange1" (ngModelChange)="calRent()">
         <owl-date-time #dtRange1></owl-date-time>
     </label>
 </div>
+
+
+
+  <select (ngModelChange)="selectChangeHandler($event)" [ngModel]="addrs">
+    <option *ngFor="let addr of addrs" [ngValue]="addr">
+      {{addr.id}} {{addr.addressLine1}}, {{addr.addressLine2}}, {{addr.city}}.
+    </option>
+</select>
+<!--<form [formGroup]="form">
+  <label for="orders">Address</label>
+  <select (change)="selectChangeHandler($event)">
+    <option *ngFor="let addr of addrs">
+     {{addr.id}} {{addr.addressLine1}}, {{addr.addressLine2}}, {{addr.city}}.
+    </option>
+  </select>-->
+  <br><br>
+  <button [disabled]="!enableAddAddress"  (click)="onAddAddress()">Add Address</button>
+  <button [disabled]="!enableEditAddress" (click)="onEditAddress()">Edit Address</button>
+
+
+
+<div class="wrapper"  *ngIf="enableAddressForm" >
+    <div class="container">
+      <form action="">
+        <h1>
+          <i class="fas fa-shipping-fast"></i> Shipping Details
+        </h1>
+
+        <div class="street1">
+            <label for="address1">Address Line 1</label>
+            <input type="text" name="address1" [(ngModel)]="formaddr.addressLine1">
+          </div>
+        <div class="street2">
+          <label for="address2">Address Line 2</label>
+          <input type="text" name="address2" [(ngModel)]="formaddr.addressLine2">
+        </div>
+        <div class="address-info">
+          <div>
+            <label for="city">City</label>
+            <input type="text" name="city" [(ngModel)]="formaddr.city">
+          </div>
+          <div>
+            <label for="state">State</label>
+            <input type="text" name="state" [(ngModel)]="formaddr.state">
+          </div>
+          <div>
+            <label for="zip">Zip</label>
+            <input type="number" name="zip" [(ngModel)]="formaddr.postalCode">
+          </div>
+        </div>
+        <div class="btns">
+          <button  *ngIf="enableFormAddAddress" (click)="AddAddress()">Add Address</button>
+          <button  *ngIf="!enableFormAddAddress" (click)="EditAddress()">Edit Address</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<h2>Card Details</h2>
+<div  *ngIf="hidecard">
+
+  <div>
+  <label for="aadharcard">AadharCard</label>
+  <input type="number" name="aadharcard" [(ngModel)]="carddtls.aadharcard">
+  </div>
+      <div>
+      <label for="pancard">PanCard</label>
+      <input type="text" name="pancard" [(ngModel)]="carddtls.pancard">
+      </div>
+      <div>
+          <label for="ccno">Credit Card No</label>
+          <input type="number" name="ccno" [(ngModel)]="carddtls.ccno">
+          </div>
+          <div>
+              <label for="cvv">CVV</label>
+              <input type="number" name="cvv" [(ngModel)]="carddtls.cvv">
+              </div>
+              <button (click)="storeDetails()">Submit Card Details</button>
+
+
+</div>
+
+
+
+
 <div class="example-button-row" style="text-align:right">
-    Amount To Be Paid:  {{this.total}}
-    <input type="button" value="Confirm Address" (click)="OnConfirm()">
+    Amount To Be Paid For {{dayDifference}} Days:  {{this.totaldaysrent}}<br>
+    <input type="button" value="Confirm Booking" (click)="OnConfirm()">
+    <br>
+    <br>
+    <hr/>
+    <br>
 </div>
 
 

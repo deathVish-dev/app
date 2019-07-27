@@ -1,0 +1,6 @@
+<p>editinventory works!</p>
+
+<h1>{{inven.prod.name}}</h1><br>
+Rent: <input type="number" name="rent" [(ngModel)]="rent" placeholder="Rent" (change)="check()">{{msg}}<br>
+Quantity: <input type="number" name="quantity" [(ngModel)]="quantity" placeholder="quantity"><br>
+<input type="button" name="submit" value="Add To Inventory" (click)="onClick()">

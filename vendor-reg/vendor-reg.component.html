@@ -19,26 +19,40 @@
 <form role = "form" class="well" (ngSubmit)="onSubmit()"> 
  <div class = "form-group">
  <label for = "name"> Name:  </label>
- <input type = "text" id = "name" class = "form-control" placeholder = "Enter Name " [(ngModel)] = "cust.name" name="name">
+ <input type = "text" id = "name" class = "form-control" placeholder = "Enter Name " [(ngModel)] = "ven.name" name="name">
  </div>
  <div class = "form-group">
  <label for = "email"> Email:  </label>
- <input type = "email" id = "email" class = "form-control" placeholder = "Enter Email " [(ngModel)] = "cust.mail" (change)="onChange()" name="email">
+ <input type = "email" id = "email" class = "form-control" placeholder = "Enter Email " [(ngModel)] = "ven.mail" (change)="onMailChange()" name="email">
 <br>
 {{this.msg}} 
 </div>
  <div class = "form-group">
  <label for = "password"> Password:  </label>
- <input type = "password" id = "password" class = "form-control" placeholder = "Enter Password " [(ngModel)] = "cust.pass" name="password">
+ <input type = "password" id = "password" class = "form-control" placeholder = "Enter Password " [(ngModel)] = "ven.pass" name="password">
  </div>
  <div class = "form-group">
  <label for = "phone"> Phone:  </label>
- <input type = "text" id = "phone" class = "form-control" placeholder = "Enter Phone " [(ngModel)] = "cust.phone" name="phone">
+ <input type = "text" id = "phone" class = "form-control" placeholder = "Enter Phone " [(ngModel)] = "ven.phone" name="phone">
  </div>
  <div class = "form-group">
     <label for = "loc"> Location:  </label>
-    <input type = "text" id = "loc" class = "form-control" placeholder = "Enter Location" [(ngModel)] = "cust.addr" name="loc">
+    <input type = "text" id = "loc" class = "form-control" placeholder = "Enter Location" [(ngModel)] = "ven.addr" name="loc">
     </div>
+
+
+    <div class = "form-group">
+      <label for = "shopid"> Shop ID:  </label>
+      <input type = "text" id = "shopid" class = "form-control" placeholder = "Enter Shop ID" [(ngModel)] = "ven.shopid" (change)="onIDChange()" name="shopid">
+      </div>
+
+
+      <div class = "form-group">
+        <label for = "shopaddr"> Shop Address:  </label>
+        <input type = "text" id = "shopaddr" class = "form-control" placeholder = "Enter Shop Location" [(ngModel)] = "ven.shopaddr" name="shopaddr">
+        </div>
+
+
  <br>
  <button type="submit" class="btn btn-success">Submit</button>
    </form>

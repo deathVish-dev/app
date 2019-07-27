@@ -15,21 +15,21 @@
               </tr>  
             </thead>  
             <tbody>  
-              <tr *ngFor="let inven of inventorylist">  
+              <tr *ngFor="let inven of invens">  
                 <td class="hidden">{{inven.id}}</td>  
-                <td>{{inven.product.name}}</td>  
-                <td>{{inven.product.description}}</td>  
-                <td>{{inven.product.category}}</td> 
-                <td>{{inven.product.rent}}</td>  
+                <td>{{inven.prod.name}}</td>  
+                <td>{{inven.prod.description}}</td>  
+                <td>{{inven.prod.category}}</td> 
+                <td>{{inven.prod.rent}}</td>  
                 <td>{{inven.quantity}}</td>
                 <td>{{inven.rent}}</td>    
                 <td>  
-                  <button (click)="deleteProd(inven)" class="btn btn-info"> Delete</button>  
-                  <button (click)="editProd(inven)" style="margin-left: 20px;" class="btn btn-info"> Edit</button>  
+                  <button (click)="deleteInventory(inven)" class="btn btn-info"> Delete</button>  
+                  <button (click)="editInventory(inven)" style="margin-left: 20px;" class="btn btn-info"> Edit</button>  
                 </td>  
               </tr>  
             </tbody>  
           </table>  
-          <a routerLink="/addprod" class="btn btn-primary active" role="button">Add Product</a>
+          <a routerLink="/addtoinven" class="btn btn-primary active" role="button">Add Product</a>
         </div>  
       </div>

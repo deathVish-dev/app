@@ -2,15 +2,15 @@
 <p>product-catalog works!</p>
 <nav>
 <h2>Products</h2>
-<ul class="products">
-  <div *ngFor="let product of products">
+<ul class="invens">
+  <div *ngFor="let in of invens">
       <div class="card">
-          <img src="{{product.img}}" alt="img" style="width:100%">
-          <h1>{{product.name}}</h1>
-          <p class="price"> Rent PerDay: {{product.rent}}</p>
-          <p>{{product.description}}</p>
+          <img src="{{in.prod.img}}" alt="img" style="width:100%">
+          <h1>{{in.prod.name}}</h1>
+          <p class="price"> Rent PerDay: {{in.rent}}</p>
+          <p>{{in.prod.description}}</p>
           <p>
-              <button><a [routerLink]="['/products', product.id ]" >
+              <button><a [routerLink]="['/products', in.id]" >
             Go To Product
             </a></button></p><br><br>
         </div>

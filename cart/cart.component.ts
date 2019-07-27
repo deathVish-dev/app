@@ -11,20 +11,25 @@ import { Cart } from 'src/services/cart';
 })
 export class CartComponent implements OnInit {
 
-  cartitems:Array<Cart>=new Array();
+  cartitems:Cart[];
   customer:Customer;
+  total:number;
   constructor(private route:ActivatedRoute,
-    private cartser:CartService
-    ) { }
+    private cartser:CartService) {
+      this.total=0;
+     }
 
   ngOnInit() {
     this.customer= JSON.parse(localStorage.getItem('currentuser'));
     this.cartser.allCartItems(this.customer.id).subscribe(data=>{
       this.cartitems=data,error=>console.error(error);
       console.log(this.cartitems);
-    }
 
-    );
+      for (let index = 0; index < this.cartitems.length; index++) {
+        this.total+=(this.cartitems[index].quantity*this.cartitems[index].inven.rent);
+      }
+
+    });
     /*this.route.paramMap.subscribe(params=>{
       let id=+params.get('id');
       console.log(id);

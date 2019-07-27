@@ -5,20 +5,25 @@
       <li *ngFor="let c of cartitems">
 
      <nav>
-     <a [routerLink]="['/products', c.product.id ]" routerLinkActive="active"><h2>{{c.product.name}}</h2></a>
+     <a [routerLink]="['/products', c.inven.id ]" routerLinkActive="active"><h2>{{c.inven.prod.name}}</h2></a>
      </nav>
-         <h4>{{c.product.description}}</h4>
+         <h4>{{c.inven.prod.description}}</h4>
             
             <div class="example-button-row" style="text-align:right">
-                    Rent Per day:{{c.product.rent}}<br>
+                    Rent Per day:{{c.inven.rent}}<br>
             
                     No Of Item: {{c.quantity}}
             <br>
             <hr/>
             <br>
-            Total Rent: {{(c.product.rent)*(c.quantity)}}<br>    
+            Total Rent: {{(c.inven.rent)*(c.quantity)}}<br>    
             </div>
       </li>
+      <hr/>
+      <div class="example-button-row" style="text-align:right">
+        Amount To Be Paid :  {{total}}
+        </div>
+
         <nav>
             <a routerLink="/booknow" class="btn btn-primary active" role="button">Rent Now</a>
             <a routerLink="/products"  class="btn btn-primary active" role="button">Continue Shopping</a>

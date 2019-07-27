@@ -6,6 +6,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertService } from 'src/services/alert.service';
 import { Customer } from 'src/services/customer';
 import { CustomerService } from 'src/services/customer.service';
+import { VendorService } from 'src/services/vendor.service';
+import { Vendor } from 'src/services/vendor';
 
 @Component({
   selector: 'app-login',
@@ -20,12 +22,14 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   cust:Customer;
+  ven:Vendor;
   constructor( private loginser:LoginService,
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
         private alertService: AlertService,
-        private custser:CustomerService) { 
+        private custser:CustomerService,
+        private venser:VendorService) { 
 		if (localStorage.getItem('currentuser')) { 
             this.router.navigate(['/products']);
 			}
@@ -73,7 +77,14 @@ export class LoginComponent implements OnInit {
       }
       else if(this.login.role=='Vendor')
       {
+
         console.log("Login Successful");
+        this.venser.getDetails(this.f.username.value, this.f.password.value)
+        .subscribe(obj=>{this.ven=obj,
+          error =>{console.log('Error')};
+          localStorage.setItem('currentuser',JSON.stringify(this.ven));
+          console.log(this.ven);
+        });
         this.router.navigate(['dash']);
       }
       else{

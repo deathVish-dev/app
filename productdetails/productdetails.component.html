@@ -4,18 +4,17 @@
 <h4>{{this.product.description}}</h4>
 
 <div class="example-button-row" style="text-align:right">
-        Rent Per day:{{this.product.rent}}<br>
+        Rent Per day:{{this.inven.rent}}<br>
 
         <button mat-raised-button (click)="OnRemove()">-</button>
         {{this.count}}
         <button mat-raised-button (click)="OnAdd()">+</button>
         <br>{{this.msg}}
 <br>
-<input type="number" name="venrent" id="venrent" [(ngModel)]="venrent">
 <hr/>
 <br>
 
-<button  (click)="AddToCart()">Add To Cart</button>
+<button  (click)="AddToCart()">Add To Inventory</button>
 
 <a routerLink="/products" class="btn btn-primary" role="button">
     Go To Products

@@ -7,6 +7,7 @@ import { Customer } from 'src/services/customer';
 import { Cart } from 'src/services/cart';
 import { Vendor } from 'src/services/vendor';
 import { Inventory } from 'src/services/inventory';
+import { InventoryService } from 'src/services/inventory.service';
 
 @Component({
   selector: 'app-productdetails',
@@ -21,53 +22,65 @@ export class ProductdetailsComponent implements OnInit {
   total:number;
   venrent:number;
   customer:Customer;
-  var:any;
   carts:Cart;
   ven:Vendor;
+  iid:number;
   inven:Inventory;
+  status:Boolean;
   
   constructor(private route:ActivatedRoute,
     private productser:ProductService,
     private cartser:CartService,
-    private router:Router) { }
+    private router:Router,
+    private invenser:InventoryService) { 
+      this.count=0;
+      this.msg='';
+      this.carts=new Cart(null,0,new Customer(),new Inventory());
+      this.inven=new Inventory();
+      this.product=new Product();
+      this.status=false;
+    }
 
   ngOnInit() {
-    this.ven= JSON.parse(localStorage.getItem('currentuser'));
+
+    this.customer= JSON.parse(localStorage.getItem('currentuser'));
     console.log('In Product Details On Init');
-    console.log(this.ven);
-    this.count=0;
-    this.msg='';
-    this.product=new Product(null,'','','',null,null,'');
+    console.log(this.customer);
+
     this.route.paramMap.subscribe(params=>{
-    let pid=+params.get('id');
-    console.log(pid);
-    this.cartser.selectedProdCart(this.customer.id,pid)
-    .subscribe(cart=>{
-      this.var=cart,error=>console.error(error);
-      if(this.var)
+    let iid=+params.get('id');
+    this.iid=iid;
+    console.log(iid);
+  });
+
+  this.invenser.getInventory(this.iid).subscribe(data=>{
+    this.inven=data;
+    console.log(this.inven);
+    this.cartser.selectedProdCart(this.customer.id,this.inven.id).subscribe(data=>{
+      if(data)
       {
-      let prod=this.var.product;
-      console.log(prod);
-      this.product=prod;
-      let cnt=+this.var['quantity'];
-      this.count=cnt;
-      this.total=this.count*this.product.rent;
-      this.venrent=this.product.rent;
+      this.carts=data;
+      this.status=true;
+      console.log(this.carts);
       }
-    });
-    if(!this.var)
+    if(!this.status)
     {
-        this.productser.getProduct(pid).subscribe(data=>{
-          this.product=data;
-          console.log(this.product);
-    });
+    this.product=this.inven.prod;
+    console.log("Cart Is Not Present");
     }
+    else{
+    this.product=this.inven.prod;
+    this.count=this.carts.quantity;
+    console.log("When Cart Is Present");
+    }
+    });
+    
   });
   }
 
   OnAdd()
   {
-    if(this.count<5)
+    if(this.count<this.inven.quantity && this.count<5)
     {
     this.count++;
     this.updateTotal();
@@ -75,7 +88,7 @@ export class ProductdetailsComponent implements OnInit {
     }
     else
     {
-      this.msg="Cannot Add More Than 5 Items";
+      this.msg="Not Available";
     }
   }
   OnRemove()
@@ -98,27 +111,18 @@ export class ProductdetailsComponent implements OnInit {
 
   AddToCart()
   {
-    if(this.var)
+    if(this.carts)
     {
-    console.log("If var is already present");
-    this.var['quantity']=this.count;
-    console.log(this.var['quantity']);
-    this.cartser.storeInCart(this.var).subscribe(data => {
-      console.log(data), error => console.log(error);
-    
+    console.log(this.count);
+    this.carts.quantity=this.count;
+    this.carts.inven=this.inven;
+    this.carts.cust=this.customer;
+    console.log(this.carts);
+    this.cartser.storeInCart(this.carts).subscribe(data => {
+    console.log(data), error => console.log(error);
     });
   }
-  else{
-    console.log("If var is not present");
-      this.carts=new Cart(null,this.product,this.count,this.customer);
-      console.log(this.carts);
-      this.cartser.storeInCart(this.carts).subscribe(data => {
-        console.log(data), error => console.log(error);
-      });
-  }
-    this.router.navigate(['cart']);
-    
-//    this.src.updateuser(this.userModel).subscribe(data => console.log(data), error => console.log(error)); 
+ this.router.navigate(['cart']);
   }
 
 }
